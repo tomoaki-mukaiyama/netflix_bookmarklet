@@ -1,6 +1,10 @@
 javascript: (() => {
     var nodes = document.querySelectorAll(".rowTitle.ltr-0");
     nodes[0].focus();
+    nodes[0].scrollIntoView({
+        behavior: "instant",
+        block: "center"
+    });
     const EVENT_LISTENER_ADDED = "eventListenerAdded";
     if (document.querySelector(".lolomo.is-fullbleed").classList.contains(EVENT_LISTENER_ADDED)) {
         return;
@@ -51,9 +55,45 @@ javascript: (() => {
                         .focus();
                 }
 
+            } else if (event.key === "a") {
+                var handlePrev = document.activeElement
+                    .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
+                    .querySelector(".slider")
+                    .querySelector("span.handle.handlePrev");
+
+                if (handlePrev) {
+                    handlePrev.click();
+                };
+            } else if (event.key === "d") {
+
+                var handleNext = document.activeElement
+                    .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
+                    .querySelector(".slider")
+                    .querySelector("span.handle.handleNext");
+
+                if (handleNext) {
+                    handleNext.click();
+                };
+            } else if (event.key === "e") {
+                if (document.activeElement.closest(".slider-item")) {
+                    console.log("1")
+                    if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
+                        console.log("2")
+                        document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                    } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
+                        document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                    }
+                }
+            } else if (event.key === "q") {
+                if (document.activeElement.closest(".slider-item")) {
+                    if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").parentElement.nextElementSibling)) {
+                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
+                    } else if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"))) {
+                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
+                    }
+                }
             }
         });
-
 
         const OBSERVE_CLASS_ADDED = "observe-class";
         const target = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0")[0].parentElement;
@@ -74,6 +114,32 @@ javascript: (() => {
         observer.observe(target, {
             childList: true
         })
+
+
+        function isVisible(elem) {
+            if (!(elem instanceof Element)) throw Error('DomUtil: elem is not an element.');
+            const style = getComputedStyle(elem);
+            if (style.display === 'none') return false;
+            if (style.visibility !== 'visible') return false;
+            if (style.opacity < 0.1) return false;
+            if (elem.offsetWidth + elem.offsetHeight + elem.getBoundingClientRect().height +
+                elem.getBoundingClientRect().width === 0) {
+                return false;
+            }
+            const elemCenter = {
+                x: elem.getBoundingClientRect().left + elem.offsetWidth / 2,
+                y: elem.getBoundingClientRect().top + elem.offsetHeight / 2
+            };
+            if (elemCenter.x < 0) return false;
+            if (elemCenter.x > (document.documentElement.clientWidth || window.innerWidth)) return false;
+            if (elemCenter.y < 0) return false;
+            if (elemCenter.y > (document.documentElement.clientHeight || window.innerHeight)) return false;
+            let pointContainer = document.elementFromPoint(elemCenter.x, elemCenter.y);
+            do {
+                if (pointContainer === elem) return true;
+            } while (pointContainer = pointContainer.parentNode);
+            return false;
+        }
 
     }
 })()
