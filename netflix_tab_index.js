@@ -75,13 +75,15 @@ javascript: (() => {
                     handleNext.click();
                 };
             } else if (event.key === "e") {
-                if (document.activeElement.closest(".slider-item")) {
-                    console.log("1")
-                    if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
-                        console.log("2")
-                        document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
-                    } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
-                        document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                if (document.activeElement.classList.contains("rowTitle")) {
+                    document.activeElement.closest(".lolomoRow").querySelectorAll(".slider-refocus")[0].focus();
+                } else {
+                    if (document.activeElement.closest(".slider-item")) {
+                        if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
+                            document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                        } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
+                            document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                        }
                     }
                 }
             } else if (event.key === "q") {
@@ -113,7 +115,7 @@ javascript: (() => {
 
         observer.observe(target, {
             childList: true
-        })
+        });
 
 
         function isVisible(elem) {
