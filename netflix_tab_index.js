@@ -1,4 +1,7 @@
 javascript: (() => {
+    if (document.querySelectorAll(".choose-profile").length) {
+        document.querySelectorAll(".profile")[2].querySelector("a").click();
+    };
     var nodes = document.querySelectorAll(".rowTitle.ltr-0");
     nodes[0].focus();
     nodes[0].scrollIntoView({
