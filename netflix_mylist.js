@@ -1,6 +1,19 @@
 javascript: (() => {
     document.querySelector('[aria-label="マイリスト"]').click();
-    document.querySelector(".galleryLockups").querySelectorAll("a")[0].focus();
+    var i = 0;
+    var checkExistFirstFocus = setInterval(function () {
+        console.log("2");
+        i++;
+        if (document.querySelector(".galleryLockups").querySelectorAll("a")){
+            document.querySelector(".galleryLockups").querySelectorAll("a")[0].focus();
+            clearInterval(checkExistFirstFocus);
+            console.log("2");
+            console.log(i);
+        } else if (i === 5){
+            clearInterval(checkExistFirstFocus);
+            console.log("3");
+        }
+    }, 200);
     var nodes = document.querySelector(".galleryLockups").querySelectorAll("a");
     nodes = Array.from(nodes);
     var rowCount = document.querySelector(".galleryLockups").querySelectorAll(".sliderContent.row-with-x-columns")[0].childElementCount;
