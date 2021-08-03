@@ -14,6 +14,7 @@ javascript: (() => {
     } else {
         document.querySelector(".lolomo.is-fullbleed").classList.add(EVENT_LISTENER_ADDED);
         document.querySelector(".lolomo.is-fullbleed").addEventListener("keydown", function (event) {
+
             if (event.key === "w") {
                 var nodes = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0");
                 nodes = Array.from(nodes);
@@ -79,7 +80,12 @@ javascript: (() => {
                 };
             } else if (event.key === "e") {
                 if (document.activeElement.classList.contains("rowTitle")) {
-                    document.activeElement.closest(".lolomoRow").querySelectorAll(".slider-refocus")[0].focus();
+                    var nodes = document.activeElement.closest(".lolomoRow").querySelectorAll(".slider-refocus");
+                    nodes = Array.from(nodes);
+                    firstVisibleNode = nodes.find(function (node) {
+                        return isVisible(node);
+                    });
+                    firstVisibleNode.focus();
                 } else {
                     if (document.activeElement.closest(".slider-item")) {
                         if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
