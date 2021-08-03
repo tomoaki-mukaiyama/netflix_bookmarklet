@@ -1,4 +1,9 @@
 javascript: (() => {
+    var newStyle = document.createElement('style');
+    newStyle.type = 'text/css';
+    newStyle.innerText = 'a:focus{outline: none; border-style: solid; border-width: 5px; border-color: #30A9DE; }';
+    
+    document.getElementsByTagName('HEAD').item(0).appendChild(newStyle);
     if (document.querySelectorAll(".choose-profile").length) {
         document.querySelectorAll(".profile")[2].querySelector("a").click();
     };
