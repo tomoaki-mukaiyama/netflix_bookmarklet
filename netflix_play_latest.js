@@ -3,9 +3,9 @@ javascript: (() => {
         document.querySelectorAll(".profile")[2].querySelector("a").click();
     };  
     if (document.querySelectorAll(".nfp-control-row.top-left-controls").length) {
-     return;   
+        return;   
     } else {
-
+        
         var checkExist = setInterval(function () {
             console.log("1");
             if (document.querySelectorAll(".slider-refocus").length) {
@@ -23,3 +23,4 @@ javascript: (() => {
         }, 500);
     }
 })()
+

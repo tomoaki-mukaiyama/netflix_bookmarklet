@@ -1,19 +1,23 @@
 javascript: (() => {
+    
     var newStyle = document.createElement('style');
     newStyle.type = 'text/css';
     newStyle.innerText = 'a:focus{outline: none; border-style: solid; border-width: 5px; border-color: #30A9DE; }';
-
     document.getElementsByTagName('HEAD').item(0).appendChild(newStyle);
+
     if (document.querySelectorAll(".choose-profile").length) {
         document.querySelectorAll(".profile")[2].querySelector("a").click();
     };
-    var nodes = document.querySelectorAll(".rowTitle.ltr-0");
+
+    var nodes = document.querySelectorAll(".slider-refocus");
     nodes[0].focus();
     nodes[0].scrollIntoView({
         behavior: "instant",
         block: "center"
     });
-    const EVENT_LISTENER_ADDED = "eventListenerAdded";
+
+    const EVENT_LISTENER_ADDED = "event_listener_added";
+
     if (document.querySelector(".lolomo.is-fullbleed").classList.contains(EVENT_LISTENER_ADDED)) {
         return;
     } else {
@@ -21,91 +25,54 @@ javascript: (() => {
         document.querySelector(".lolomo.is-fullbleed").addEventListener("keydown", function (event) {
 
             if (event.key === "w") {
-                var nodes = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0");
+                var nodes = document.activeElement
+                    .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
+                    .previousElementSibling
+                    .querySelectorAll(".slider-refocus");
                 nodes = Array.from(nodes);
-
-                if (nodes.find(node => node.querySelector(".rowTitle.ltr-0") === document.activeElement)) {
-                    var activeNode = nodes.find(node => node.querySelector(".rowTitle.ltr-0") === document.activeElement);
-                    var previousNode = activeNode.previousElementSibling;
-                    if (previousNode) {
-                        previousNode.querySelector(".rowTitle.ltr-0").focus();
-                        previousNode.scrollIntoView({
-                            behavior: "instant",
-                            block: "center"
-                        });
-                    };
-                } else {
-                    document.activeElement
-                        .closest(".rowContainer.rowContainer_title_card")
-                        .previousElementSibling
-                        .querySelector(".rowTitle.ltr-0")
-                        .focus();
-                }
+                firstVisibleNode = nodes.find(function (node) {
+                    return isVisible(node);
+                });
+                firstVisibleNode.focus();
+                firstVisibleNode.scrollIntoView({
+                    behavior: "instant",
+                    block: "center"
+                });
             } else if (event.key === "s") {
-                var nodes = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0");
+                var nodes = document.activeElement
+                    .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
+                    .nextElementSibling
+                    .querySelectorAll(".slider-refocus");
                 nodes = Array.from(nodes);
-                if (nodes.find(node => node.querySelector(".rowTitle.ltr-0") === document.activeElement)) {
-                    var activeNode = nodes.find(node => node.querySelector(".rowTitle.ltr-0") === document.activeElement);
-                    var nextNode = activeNode.nextElementSibling;
-                    if (nextNode) {
-                        nextNode.querySelector(".rowTitle.ltr-0").focus();
-                        nextNode.scrollIntoView({
-                            behavior: "instant",
-                            block: "center"
-                        });
-                    };
-                } else {
-                    var currentElement = document.activeElement
-                        .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
-                        .nextElementSibling
-                        .querySelector(".rowTitle.ltr-0");
-                    currentElement.focus();
-                    currentElement.scrollIntoView({
-                        behavior: "instant",
-                        block: "center"
-                    });
-                }
+                firstVisibleNode = nodes.find(function (node) {
+                    return isVisible(node);
+                });
+                firstVisibleNode.focus();
+                firstVisibleNode.scrollIntoView({
+                    behavior: "instant",
+                    block: "center"
+                });
             } else if (event.key === "q") {
-                var handlePrev = document.activeElement
+                document.activeElement
                     .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
                     .querySelector(".slider")
-                    .querySelector("span.handle.handlePrev");
-                if (handlePrev) {
-                    handlePrev.click();
-                };
+                    .querySelector("span.handle.handlePrev").click();
             } else if (event.key === "e") {
-                var handleNext = document.activeElement
+                document.activeElement
                     .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
                     .querySelector(".slider")
-                    .querySelector("span.handle.handleNext");
-
-                if (handleNext) {
-                    handleNext.click();
-                };
+                    .querySelector("span.handle.handleNext").click();
             } else if (event.key === "a") {
-                if (document.activeElement.closest(".slider-item")) {
-                    if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").parentElement.nextElementSibling)) {
-                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
-                    } else if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"))) {
-                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
-                    }
+                if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").parentElement.nextElementSibling)) {
+                    document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
+                } else if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"))) {
+                    document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
                 }
             } else if (event.key === "d") {
-                if (document.activeElement.classList.contains("rowTitle")) {
-                    var nodes = document.activeElement.closest(".lolomoRow").querySelectorAll(".slider-refocus");
-                    nodes = Array.from(nodes);
-                    firstVisibleNode = nodes.find(function (node) {
-                        return isVisible(node);
-                    });
-                    firstVisibleNode.focus();
-                } else {
-                    if (document.activeElement.closest(".slider-item")) {
-                        if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
-                            document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
-                        } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
-                            document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
-                        }
-                    }
+                if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
+                    document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
+                    document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
                 }
             }
         });
@@ -119,8 +86,8 @@ javascript: (() => {
                     return;
                 } else {
                     node.classList.add(OBSERVE_CLASS_ADDED);
-                    if (node.querySelector("span.rowTitle.ltr-0")) {
-                        node.querySelector("span.rowTitle.ltr-0").setAttribute("tabindex", "0");
+                    if (node.querySelector("span.slider-refocus")) {
+                        node.querySelector("span.slider-refocus").setAttribute("tabindex", "0");
                     }
                 }
             })
@@ -129,7 +96,6 @@ javascript: (() => {
         observer.observe(target, {
             childList: true
         });
-
 
         function isVisible(elem) {
             if (!(elem instanceof Element)) throw Error('DomUtil: elem is not an element.');
