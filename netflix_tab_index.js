@@ -1,5 +1,5 @@
 javascript: (() => {
-    
+
     var newStyle = document.createElement('style');
     newStyle.type = 'text/css';
     newStyle.innerText = 'a:focus{outline: none; border-style: solid; border-width: 5px; border-color: #30A9DE; }';
@@ -63,16 +63,22 @@ javascript: (() => {
                     .querySelector(".slider")
                     .querySelector("span.handle.handleNext").click();
             } else if (event.key === "a") {
-                if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").parentElement.nextElementSibling)) {
-                    document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
-                } else if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"))) {
-                    document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
+                var leftContent = document
+                    .activeElement
+                    .closest(".slider-item")
+                    .previousElementSibling
+                    .querySelector("a");
+                if (isVisible(leftContent)) {
+                    leftContent.focus();
                 }
             } else if (event.key === "d") {
-                if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").parentElement.nextElementSibling)) {
-                    document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
-                } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
-                    document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
+                var rightContent = document
+                    .activeElement
+                    .closest(".slider-item")
+                    .nextElementSibling
+                    .querySelector("a");
+                if (isVisible(rightContent)) {
+                    rightContent.focus();
                 }
             }
         });
