@@ -2,7 +2,7 @@ javascript: (() => {
     var newStyle = document.createElement('style');
     newStyle.type = 'text/css';
     newStyle.innerText = 'a:focus{outline: none; border-style: solid; border-width: 5px; border-color: #30A9DE; }';
-    
+
     document.getElementsByTagName('HEAD').item(0).appendChild(newStyle);
     if (document.querySelectorAll(".choose-profile").length) {
         document.querySelectorAll(".profile")[2].querySelector("a").click();
@@ -57,11 +57,15 @@ javascript: (() => {
                         });
                     };
                 } else {
-                    document.activeElement
+                    var currentElement = document.activeElement
                         .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
                         .nextElementSibling
-                        .querySelector(".rowTitle.ltr-0")
-                        .focus();
+                        .querySelector(".rowTitle.ltr-0");
+                    currentElement.focus();
+                    currentElement.scrollIntoView({
+                        behavior: "instant",
+                        block: "center"
+                    });
                 }
 
             } else if (event.key === "a") {
