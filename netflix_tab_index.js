@@ -41,11 +41,9 @@ javascript: (() => {
                         .querySelector(".rowTitle.ltr-0")
                         .focus();
                 }
-
             } else if (event.key === "s") {
                 var nodes = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0");
                 nodes = Array.from(nodes);
-
                 if (nodes.find(node => node.querySelector(".rowTitle.ltr-0") === document.activeElement)) {
                     var activeNode = nodes.find(node => node.querySelector(".rowTitle.ltr-0") === document.activeElement);
                     var nextNode = activeNode.nextElementSibling;
@@ -67,18 +65,15 @@ javascript: (() => {
                         block: "center"
                     });
                 }
-
-            } else if (event.key === "a") {
+            } else if (event.key === "q") {
                 var handlePrev = document.activeElement
                     .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
                     .querySelector(".slider")
                     .querySelector("span.handle.handlePrev");
-
                 if (handlePrev) {
                     handlePrev.click();
                 };
-            } else if (event.key === "d") {
-
+            } else if (event.key === "e") {
                 var handleNext = document.activeElement
                     .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
                     .querySelector(".slider")
@@ -87,7 +82,15 @@ javascript: (() => {
                 if (handleNext) {
                     handleNext.click();
                 };
-            } else if (event.key === "e") {
+            } else if (event.key === "a") {
+                if (document.activeElement.closest(".slider-item")) {
+                    if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").parentElement.nextElementSibling)) {
+                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
+                    } else if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"))) {
+                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
+                    }
+                }
+            } else if (event.key === "d") {
                 if (document.activeElement.classList.contains("rowTitle")) {
                     var nodes = document.activeElement.closest(".lolomoRow").querySelectorAll(".slider-refocus");
                     nodes = Array.from(nodes);
@@ -102,14 +105,6 @@ javascript: (() => {
                         } else if (isVisible(document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"))) {
                             document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a").focus();
                         }
-                    }
-                }
-            } else if (event.key === "q") {
-                if (document.activeElement.closest(".slider-item")) {
-                    if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").parentElement.nextElementSibling)) {
-                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
-                    } else if (isVisible(document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"))) {
-                        document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a").focus();
                     }
                 }
             }
