@@ -16,7 +16,7 @@
     }
 
     // ファミリーアカウントの場合のみ
-    //プロフィール選択画面の場合で３個目（自分のやつ）をクリック
+    //プロフィール選択画面の場合で今回の場合自分のやつをクリック
     if (document.querySelectorAll(".choose-profile").length) {
         document.querySelectorAll(".profile")[2].querySelector("a").click();
     };
@@ -38,11 +38,11 @@
         };
     }, 500);
 
-
+    //keydownのイベントリスナーを作成
     const EVENT_LISTENER_ADDED = "event_listener_added";
-
     addKeyEvent();
     function addKeyEvent() {
+        //イベントリスナーを複数設定させない実装
         if (document.querySelector(".lolomo.is-fullbleed").classList.contains(EVENT_LISTENER_ADDED)) {
             return;
         } else {
@@ -109,26 +109,25 @@
             });
         }
 
+        // const OBSERVE_CLASS_ADDED = "observe-class";
+        // const target = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0")[0].parentElement;
+        // const observer = new MutationObserver(records => {
+        //     var nodes = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0");
+        //     nodes.forEach(node => {
+        //         if (node.classList.contains(OBSERVE_CLASS_ADDED)) {
+        //             return;
+        //         } else {
+        //             node.classList.add(OBSERVE_CLASS_ADDED);
+        //             if (node.querySelector("span.slider-refocus")) {
+        //                 node.querySelector("span.slider-refocus").setAttribute("tabindex", "0");
+        //             }
+        //         }
+        //     })
+        // });
 
-        const OBSERVE_CLASS_ADDED = "observe-class";
-        const target = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0")[0].parentElement;
-        const observer = new MutationObserver(records => {
-            var nodes = document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0");
-            nodes.forEach(node => {
-                if (node.classList.contains(OBSERVE_CLASS_ADDED)) {
-                    return;
-                } else {
-                    node.classList.add(OBSERVE_CLASS_ADDED);
-                    if (node.querySelector("span.slider-refocus")) {
-                        node.querySelector("span.slider-refocus").setAttribute("tabindex", "0");
-                    }
-                }
-            })
-        });
-
-        observer.observe(target, {
-            childList: true
-        });
+        // observer.observe(target, {
+        //     childList: true
+        // });
 
         //画面に表示されてるかを判断する
         function isVisible(elem) {
@@ -159,11 +158,10 @@
 
 //フォーマットしたやつ
 javascript: (() => {
-    addCssOnce();function addCssOnce(){var c=document.querySelector(".js-focus-visible");c.classList.contains("class-already-added")||(c.classList.add("class-already-added"),c=document.createElement("style"),c.type="text/css",c.innerText="a:focus{outline: none; border-style: solid; border-width: 5px; border-color: #30A9DE; }",document.getElementsByTagName("HEAD").item(0).appendChild(c))}document.querySelectorAll(".choose-profile").length&&document.querySelectorAll(".profile")[2].querySelector("a").click();
-var checkExistElement=setInterval(function(){if(document.querySelector(".lolomoRow.lolomoRow_title_card.ltr-0")){clearInterval(checkExistElement);var c=document.querySelector(".volatile-billboard-animations-container");c&&c.remove();c=document.querySelector(".slider-refocus");c.focus();c.scrollIntoView({behavior:"smooth",block:"center"})}},500),EVENT_LISTENER_ADDED="event_listener_added";addKeyEvent();
-function addKeyEvent(){function c(a){if(!(a instanceof Element))throw Error("DomUtil: elem is not an element.");var b=getComputedStyle(a);if("none"===b.display||"visible"!==b.visibility||.1>b.opacity||0===a.offsetWidth+a.offsetHeight+a.getBoundingClientRect().height+a.getBoundingClientRect().width)return!1;b=a.getBoundingClientRect().left+a.offsetWidth/2;var d=a.getBoundingClientRect().top+a.offsetHeight/2;if(0>b||b>(document.documentElement.clientWidth||window.innerWidth)||0>d||d>(document.documentElement.clientHeight||
-window.innerHeight))return!1;b=document.elementFromPoint(b,d);do if(b===a)return!0;while(b=b.parentNode);return!1}if(!document.querySelector(".lolomo.is-fullbleed").classList.contains(EVENT_LISTENER_ADDED)){document.querySelector(".lolomo.is-fullbleed").classList.add(EVENT_LISTENER_ADDED);document.querySelector(".lolomo.is-fullbleed").addEventListener("keydown",function(a){"w"===a.key?(a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").previousElementSibling.querySelectorAll(".slider-refocus"),
-a=Array.from(a),firstVisibleNode=a.find(function(b){return c(b)}),firstVisibleNode.focus(),firstVisibleNode.scrollIntoView({behavior:"instant",block:"center"})):"s"===a.key?(a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").nextElementSibling.querySelectorAll(".slider-refocus"),a=Array.from(a),firstVisibleNode=a.find(function(b){return c(b)}),firstVisibleNode.focus(),firstVisibleNode.scrollIntoView({behavior:"instant",block:"center"})):"q"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handlePrev").click():
-"e"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handleNext").click():"a"===a.key?(a=document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"),c(a)&&a.focus()):"d"===a.key&&(a=document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"),c(a)&&a.focus())});var e=document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0")[0].parentElement;(new MutationObserver(function(a){document.querySelectorAll(".lolomoRow.lolomoRow_title_card.ltr-0").forEach(function(b){b.classList.contains("observe-class")||
-(b.classList.add("observe-class"),b.querySelector("span.slider-refocus")&&b.querySelector("span.slider-refocus").setAttribute("tabindex","0"))})})).observe(e,{childList:!0})}};
+    addCssOnce();function addCssOnce(){var b=document.querySelector(".js-focus-visible");b.classList.contains("class-already-added")||(b.classList.add("class-already-added"),b=document.createElement("style"),b.type="text/css",b.innerText="a:focus{outline: none; border-style: solid; border-width: 5px; border-color: #30A9DE; }",document.getElementsByTagName("HEAD").item(0).appendChild(b))}document.querySelectorAll(".choose-profile").length&&document.querySelectorAll(".profile")[2].querySelector("a").click();
+var checkExistElement=setInterval(function(){if(document.querySelector(".lolomoRow.lolomoRow_title_card.ltr-0")){clearInterval(checkExistElement);var b=document.querySelector(".volatile-billboard-animations-container");b&&b.remove();b=document.querySelector(".slider-refocus");b.focus();b.scrollIntoView({behavior:"smooth",block:"center"})}},500),EVENT_LISTENER_ADDED="event_listener_added";addKeyEvent();
+function addKeyEvent(){function b(a){if(!(a instanceof Element))throw Error("DomUtil: elem is not an element.");var c=getComputedStyle(a);if("none"===c.display||"visible"!==c.visibility||.1>c.opacity||0===a.offsetWidth+a.offsetHeight+a.getBoundingClientRect().height+a.getBoundingClientRect().width)return!1;c=a.getBoundingClientRect().left+a.offsetWidth/2;var d=a.getBoundingClientRect().top+a.offsetHeight/2;if(0>c||c>(document.documentElement.clientWidth||window.innerWidth)||0>d||d>(document.documentElement.clientHeight||
+window.innerHeight))return!1;c=document.elementFromPoint(c,d);do if(c===a)return!0;while(c=c.parentNode);return!1}document.querySelector(".lolomo.is-fullbleed").classList.contains(EVENT_LISTENER_ADDED)||(document.querySelector(".lolomo.is-fullbleed").classList.add(EVENT_LISTENER_ADDED),document.querySelector(".lolomo.is-fullbleed").addEventListener("keydown",function(a){"w"===a.key?(a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").previousElementSibling.querySelectorAll(".slider-refocus"),
+a=Array.from(a),firstVisibleNode=a.find(function(c){return b(c)}),firstVisibleNode.focus(),firstVisibleNode.scrollIntoView({behavior:"instant",block:"center"})):"s"===a.key?(a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").nextElementSibling.querySelectorAll(".slider-refocus"),a=Array.from(a),firstVisibleNode=a.find(function(c){return b(c)}),firstVisibleNode.focus(),firstVisibleNode.scrollIntoView({behavior:"instant",block:"center"})):"q"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handlePrev").click():
+"e"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handleNext").click():"a"===a.key?(a=document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"),b(a)&&a.focus()):"d"===a.key&&(a=document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"),b(a)&&a.focus())}))};
 })()
