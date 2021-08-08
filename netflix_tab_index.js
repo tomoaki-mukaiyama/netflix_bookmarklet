@@ -42,11 +42,11 @@ var checkExistElement = setInterval(function () {
 const EVENT_LISTENER_ADDED = "event_listener_added";
 function addKeyEvent() {
     //イベントリスナーを複数設定させない実装
-    if (document.querySelector(".lolomo.is-fullbleed").classList.contains(EVENT_LISTENER_ADDED)) {
+    if (document.querySelector(".mainView").classList.contains(EVENT_LISTENER_ADDED)) {
         return;
     } else {
-        document.querySelector(".lolomo.is-fullbleed").classList.add(EVENT_LISTENER_ADDED);
-        document.querySelector(".lolomo.is-fullbleed").addEventListener("keydown", function (event) {
+        document.querySelector(".mainView").classList.add(EVENT_LISTENER_ADDED);
+        document.querySelector(".mainView").addEventListener("keydown", function (event) {
             if (event.key === "w") {
                 //フォーカス中コンテンツの位置を取得（配列のインデックス）
                 var nodes = document.activeElement
@@ -90,11 +90,15 @@ function addKeyEvent() {
                 bottomVisibleNodes = nodes.filter(node => {
                     return isVisible(node);
                 });
-                bottomVisibleNodes[currentIndex].focus();
-                bottomVisibleNodes[currentIndex].scrollIntoView({
-                    behavior: "instant",
-                    block: "center"
-                });
+                if (bottomVisibleNodes.length){
+                    bottomVisibleNodes[currentIndex].focus();
+                    bottomVisibleNodes[currentIndex].scrollIntoView({
+                        behavior: "instant",
+                        block: "center"
+                    });
+                } else {
+                    window.scrollBy(0,100);
+                };
             } else if (event.key === "q") {
                 document.activeElement
                     .closest(".lolomoRow.lolomoRow_title_card.ltr-0")
@@ -142,10 +146,10 @@ function addKeyEvent() {
 
 //フォーマットしたやつ
 javascript: (() => {
-var e=document.querySelector(".js-focus-visible");if(!e.classList.contains("class-already-added")){e.classList.add("class-already-added");var f=document.createElement("style");f.type="text/css";f.innerText="a:focus{ border-style: solid; border-width: 10px; border-color: red; }";document.getElementsByTagName("HEAD").item(0).appendChild(f)}document.querySelectorAll(".choose-profile").length&&document.querySelectorAll(".profile")[2].querySelector("a").click();
+    var e=document.querySelector(".js-focus-visible");if(!e.classList.contains("class-already-added")){e.classList.add("class-already-added");var f=document.createElement("style");f.type="text/css";f.innerText="a:focus{ border-style: solid; border-width: 10px; border-color: red; }";document.getElementsByTagName("HEAD").item(0).appendChild(f)}document.querySelectorAll(".choose-profile").length&&document.querySelectorAll(".profile")[2].querySelector("a").click();
 var g=setInterval(function(){if(document.querySelector(".lolomoRow.lolomoRow_title_card.ltr-0")){clearInterval(g);h();var b=document.querySelector(".volatile-billboard-animations-container");b&&b.remove();b=document.querySelector(".slider-refocus");b.focus();b.scrollIntoView({behavior:"smooth",block:"center"})}},500);
-function h(){function b(a){var c=a.getBoundingClientRect().left+a.offsetWidth/2;a.getBoundingClientRect();if(0<c&&c<(document.documentElement.clientWidth||window.innerWidth))return!0}document.querySelector(".lolomo.is-fullbleed").classList.contains("event_listener_added")||(document.querySelector(".lolomo.is-fullbleed").classList.add("event_listener_added"),document.querySelector(".lolomo.is-fullbleed").addEventListener("keydown",function(a){if("w"===a.key){a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelectorAll(".slider-refocus");
+function h(){function b(a){var c=a.getBoundingClientRect().left+a.offsetWidth/2;a.getBoundingClientRect();if(0<c&&c<(document.documentElement.clientWidth||window.innerWidth))return!0}document.querySelector(".mainView").classList.contains("event_listener_added")||(document.querySelector(".mainView").classList.add("event_listener_added"),document.querySelector(".mainView").addEventListener("keydown",function(a){if("w"===a.key){a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelectorAll(".slider-refocus");
 a=Array.from(a);a=a.filter(function(d){return b(d)});var c=a.indexOf(document.activeElement);a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").previousElementSibling.querySelectorAll(".slider-refocus");a=Array.from(a);upperVisibleNodes=a.filter(function(d){return b(d)});upperVisibleNodes[c].focus();upperVisibleNodes[c].scrollIntoView({behavior:"instant",block:"center"})}else"s"===a.key?(a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelectorAll(".slider-refocus"),
-a=Array.from(a),a=a.filter(function(d){return b(d)}),c=a.indexOf(document.activeElement),a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").nextElementSibling.querySelectorAll(".slider-refocus"),a=Array.from(a),bottomVisibleNodes=a.filter(function(d){return b(d)}),bottomVisibleNodes[c].focus(),bottomVisibleNodes[c].scrollIntoView({behavior:"instant",block:"center"})):"q"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handlePrev").click():
+a=Array.from(a),a=a.filter(function(d){return b(d)}),c=a.indexOf(document.activeElement),a=document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").nextElementSibling.querySelectorAll(".slider-refocus"),a=Array.from(a),bottomVisibleNodes=a.filter(function(d){return b(d)}),bottomVisibleNodes.length?(bottomVisibleNodes[c].focus(),bottomVisibleNodes[c].scrollIntoView({behavior:"instant",block:"center"})):window.scrollBy(0,100)):"q"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handlePrev").click():
 "e"===a.key?document.activeElement.closest(".lolomoRow.lolomoRow_title_card.ltr-0").querySelector(".slider").querySelector("span.handle.handleNext").click():"a"===a.key?(a=document.activeElement.closest(".slider-item").previousElementSibling.querySelector("a"),b(a)&&a.focus()):"d"===a.key&&(a=document.activeElement.closest(".slider-item").nextElementSibling.querySelector("a"),b(a)&&a.focus())}))};
 })()
