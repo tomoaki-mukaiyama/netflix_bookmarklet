@@ -7,4 +7,5 @@ javascript: (() => {
     }
 })()
 
-
+//ブックマークレット
+javascript:(function(url){s=document.createElement('script');s.src=url;document.body.appendChild(s);})('https://tomoaki-mukaiyama.github.io/netflix_bookmarklet/next_episode_formatted.js')
