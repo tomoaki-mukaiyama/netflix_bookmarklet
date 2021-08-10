@@ -8,6 +8,3 @@ javascript: (() => {
 })()
 
 
-javascript: (() => {
-var a=document.querySelector(".touchable.PlayerControls--control-element.nfp-button-control.default-control-button.button-nfplayerNextEpisode");a?a.click():alert("THIS IS THE LAST CONTENT");
-})()
