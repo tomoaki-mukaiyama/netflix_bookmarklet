@@ -1,3 +1,5 @@
+(function(){
+
 if (document.querySelectorAll(".choose-profile").length) {
         document.querySelectorAll(".profile")[2].querySelector("a").click();
     };  
@@ -22,3 +24,4 @@ if (document.querySelectorAll(".choose-profile").length) {
         }, 500);
     }
 
+}());
