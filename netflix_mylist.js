@@ -1,4 +1,3 @@
-javascript: (() => {
     document.querySelector('[aria-label="マイリスト"]').click();
     var i = 0;
     var checkExistFirstFocus = setInterval(function () {
@@ -60,5 +59,3 @@ javascript: (() => {
             clearInterval(checkExistFirstFocus);
         }
     }, 300);
-
-})()
