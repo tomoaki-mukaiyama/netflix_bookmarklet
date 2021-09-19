@@ -1,4 +1,4 @@
-    document.querySelector('[aria-label="マイリスト"]').click();
+document.querySelectorAll(".navigation-tab")[4].querySelector("a").click();
     var i = 0;
     var checkExistFirstFocus = setInterval(function () {
         console.log("1");
